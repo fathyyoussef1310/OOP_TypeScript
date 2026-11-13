@@ -1,6 +1,5 @@
 class User {
-    constructor(public id: number, public name: string, public email: string, protected password: string, private phone: string, public age: number,
-                public noteBooks: NoteBook [] = []
+    constructor(public id: number, public name: string, public email: string, protected password: string, private phone: string, public age: number, public noteBooks: NoteBook [] = []
     ) {
         if (age < 18 || age > 60) {
             throw new Error(`User age must be at least above 18 and Less than 61`);
@@ -66,25 +65,49 @@ class NoteBook {
         this.notes = this.notes.filter(note => note.id !== id);
     }
 }
+
+class Storage <T>{
+    constructor(private T:T[] = []) {
+    }
+    addItem(item:T):void{
+          this.T.push(item);
+    }
+    removeItem(item:T):void{
+         this.T = this.T.filter(note => note !== item)
+    }
+    getAllItems():T[]{
+        return this.T;
+    }
+}
 let noteBook1 = new NoteBook("OOP");
 let noteBook2 = new NoteBook("DSS");
-
 let admin1 = new Admin(1, "Ahmed", "fathy@gmail", "passs", "0111", 20);
- let note1 = new Note(3,"Ilija Dragnov" , "Russian Dragon Just Signs a Contract with AEW" ,admin1)
+console.log(noteBook1)
+let note1 = new Note(3,"Ilija Dragora" , "Russian Dragon Just Signs a Contract with AEW" ,admin1)
 admin1.addNoteBook(noteBook1);
 admin1.addNoteBook(noteBook2);
-
 console.log(note1.preview())
+console.log('Note Books He has'+admin1.noteBooks);
+const numbersStorage = new Storage<number>();
+numbersStorage.addItem(10);
+numbersStorage.addItem(20);
+numbersStorage.addItem(30);
+console.log(numbersStorage.getAllItems());
+numbersStorage.removeItem(10);
+console.log(numbersStorage.getAllItems());
 
-console.log(admin1.noteBooks);
+const namesStorage = new Storage<string>();
 
+namesStorage.addItem("Ahmed");
+namesStorage.addItem("Youssef");
 
+console.log(namesStorage.getAllItems());
 
 
 // Q 2 2
 //
 // Relationship	=  Classes 	           Meaning
-// Inheritance	   Admin  User	       Admin IS-A User So Can extend every thing from User
+// Inheritance	   Admin > User	       Admin IS-A User So Can extend every thing from User
 // Composition	  NoteBook = Note	   NoteBook owns Notes  ((NoteBooks Must Have  Notes))
 // Aggregation	User = NoteBook	       User has NoteBooks that can exist independently
 
