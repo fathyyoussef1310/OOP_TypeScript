@@ -5,7 +5,6 @@ class User {
             throw new Error(`User age must be at least above 18 and Less than 61`);
         }
     }
-
     displayInfo(): object {
         return {
             id: this.id,
@@ -14,11 +13,9 @@ class User {
             age: this.age,
         };
     }
-
     addNoteBook(noteBook: NoteBook): void {
         this.noteBooks.push(noteBook);
     }
-
      removeNoteBook(name: string): void {
         this.noteBooks = this.noteBooks.filter(
             noteBook => noteBook.name !== name
@@ -104,7 +101,12 @@ namesStorage.addItem("Youssef");
 console.log(namesStorage.getAllItems());
 
 
-// Q 2 2
+// Q 2
+// // 1
+// https://www.figma.com/design/qbcDGYVMCWwJ0GMXU6qMCe/UML-Diagram?node-id=0-1&p=f  UML Diagram
+//
+//
+// 2
 //
 // Relationship	=  Classes 	           Meaning
 // Inheritance	   Admin > User	       Admin IS-A User So Can extend every thing from User
